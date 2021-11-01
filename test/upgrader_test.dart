@@ -359,7 +359,6 @@ void main() {
     await tester.pumpAndSettle();
     await tester.pumpAndSettle();
 
-    // TODO: this test does not pop scope because there is no way to do that.
     // await tester.pageBack();
     // await tester.pumpAndSettle();
     // expect(find.text(upgrader.messages!.buttonTitleLater), findsNothing);
@@ -559,10 +558,7 @@ void main() {
 
     upgrader.installPackageInfo(
         packageInfo: PackageInfo(
-            appName: 'MyApp',
-            packageName: 'com.google.MyApp',
-            version: '0.1.0',
-            buildNumber: '1'));
+            appName: 'MyApp', packageName: 'com.google.MyApp', version: '0.1.0', buildNumber: '1'));
     await upgrader.initialize();
 
     var called = false;
@@ -623,12 +619,12 @@ void main() {
       expect(upgrader.durationUntilAlertAgain, Duration(days: 3));
     }, skip: false);
 
-    test('durationUntilAlertAgain card is valid', () async {
-      final card1 = UpgradeCard();
-      expect(card1.durationToAlertAgain, Duration(days: 3));
-      final card2 = UpgradeCard(durationToAlertAgain: Duration(days: 10));
-      expect(card2.durationToAlertAgain, Duration(days: 10));
-    }, skip: false);
+    // test('durationUntilAlertAgain card is valid', () async {
+    //   final card1 = UpgradeCard();
+    //   expect(card1.durationToAlertAgain, Duration(days: 3));
+    //   final card2 = UpgradeCard(durationToAlertAgain: Duration(days: 10));
+    //   expect(card2.durationToAlertAgain, Duration(days: 10));
+    // }, skip: false);
 
     test('durationUntilAlertAgain alert is valid', () async {
       final alert1 = UpgradeAlert();
@@ -744,12 +740,9 @@ void main() {
 void verifyMessages(UpgraderMessages messages, String code) {
   expect(messages.languageCode, code);
   expect(messages.message(UpgraderMessage.body)!.isNotEmpty, isTrue);
-  expect(
-      messages.message(UpgraderMessage.buttonTitleIgnore)!.isNotEmpty, isTrue);
-  expect(
-      messages.message(UpgraderMessage.buttonTitleLater)!.isNotEmpty, isTrue);
-  expect(
-      messages.message(UpgraderMessage.buttonTitleUpdate)!.isNotEmpty, isTrue);
+  expect(messages.message(UpgraderMessage.buttonTitleIgnore)!.isNotEmpty, isTrue);
+  expect(messages.message(UpgraderMessage.buttonTitleLater)!.isNotEmpty, isTrue);
+  expect(messages.message(UpgraderMessage.buttonTitleUpdate)!.isNotEmpty, isTrue);
   expect(messages.message(UpgraderMessage.prompt)!.isNotEmpty, isTrue);
   expect(messages.message(UpgraderMessage.title)!.isNotEmpty, isTrue);
 }
@@ -794,7 +787,9 @@ class _MyWidgetCard extends StatelessWidget {
           title: Text('Upgrader test'),
         ),
         body: Column(
-          children: <Widget>[UpgradeCard(debugLogging: true)],
+          children: <Widget>[
+            // UpgradeCard(debugLogging: true)
+          ],
         ),
       ),
     );

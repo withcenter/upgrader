@@ -77,12 +77,14 @@ class UpgradeCard extends UpgradeBase {
               final title = Upgrader().messages!.message(UpgraderMessage.title);
               final message = Upgrader().message();
               final releaseNotes = Upgrader().releaseNotes;
-              final shouldDisplayReleaseNotes = Upgrader().shouldDisplayReleaseNotes();
+              final shouldDisplayReleaseNotes =
+                  Upgrader().shouldDisplayReleaseNotes();
               if (Upgrader().debugLogging) {
                 print('UpgradeCard: will display');
                 print('UpgradeCard: showDialog title: $title');
                 print('UpgradeCard: showDialog message: $message');
-                print('UpgradeCard: shouldDisplayReleaseNotes: $shouldDisplayReleaseNotes');
+                print(
+                    'UpgradeCard: shouldDisplayReleaseNotes: $shouldDisplayReleaseNotes');
 
                 print('UpgradeCard: showDialog releaseNotes: $releaseNotes');
               }
@@ -95,7 +97,8 @@ class UpgradeCard extends UpgradeBase {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text('Release Notes:', style: TextStyle(fontWeight: FontWeight.bold)),
+                        Text('Release Notes:',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
                         Text(
                           releaseNotes,
                           maxLines: 15,
@@ -116,16 +119,20 @@ class UpgradeCard extends UpgradeBase {
                       Text(message),
                       Padding(
                           padding: EdgeInsets.only(top: 15.0),
-                          child: Text(Upgrader().messages!.message(UpgraderMessage.prompt) ?? '')),
+                          child: Text(Upgrader()
+                                  .messages!
+                                  .message(UpgraderMessage.prompt) ??
+                              '')),
                       if (notes != null) notes,
                     ],
                   ),
                   actions: <Widget>[
                     if (Upgrader().showIgnore)
                       TextButton(
-                          child: Text(
-                              Upgrader().messages!.message(UpgraderMessage.buttonTitleIgnore) ??
-                                  ''),
+                          child: Text(Upgrader()
+                                  .messages!
+                                  .message(UpgraderMessage.buttonTitleIgnore) ??
+                              ''),
                           onPressed: () {
                             // Save the date/time as the last time alerted.
                             Upgrader().saveLastAlerted();
@@ -135,7 +142,10 @@ class UpgradeCard extends UpgradeBase {
                           }),
                     if (Upgrader().showLater)
                       laterButtonBuilder(
-                        Upgrader().messages!.message(UpgraderMessage.buttonTitleLater) ?? '',
+                        Upgrader()
+                                .messages!
+                                .message(UpgraderMessage.buttonTitleLater) ??
+                            '',
                         () {
                           // Save the date/time as the last time alerted.
                           Upgrader().saveLastAlerted();
@@ -156,7 +166,10 @@ class UpgradeCard extends UpgradeBase {
                     //       state.forceUpdateState();
                     //     }),
                     updateButtonBuilder(
-                      Upgrader().messages!.message(UpgraderMessage.buttonTitleUpdate) ?? '',
+                      Upgrader()
+                              .messages!
+                              .message(UpgraderMessage.buttonTitleUpdate) ??
+                          '',
                       () {
                         // Save the date/time as the last time alerted.
                         Upgrader().saveLastAlerted();

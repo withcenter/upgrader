@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+
   # From Dart Team: Get current device information from within the Flutter application.
   device_info: ^2.0.0
 
